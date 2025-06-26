@@ -50,11 +50,11 @@ async def unified_zuno_chat(query: Query, x_api_key: str = Header(...)):
 
     # Fallback to Rasa
     try:
-        rasa_response = requests.post(
-            "http://localhost:5005/webhooks/rest/webhook",
-            json={"sender": "user", "message": query.question},
-            timeout=3
-        )
+        rrasa_response = requests.post(
+    "https://rasa-zuno.onrender.com/webhooks/rest/webhook",
+    json={"sender": "user", "message": query.question},
+    timeout=3
+    )
         messages = [m.get("text") for m in rasa_response.json() if "text" in m]
         if messages:
             return {"response": messages[0]}
