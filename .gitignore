@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 .env
 
+zuno_model/tf_model.h5
