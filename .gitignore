@@ -5,3 +5,4 @@ __pycache__/
 .env
 
 zuno_model/tf_model.h5
+rasa_bot/

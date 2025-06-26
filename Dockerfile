@@ -1,18 +1,18 @@
-# ✅ Use a lightweight Python image
+# Use a base image with Python
 FROM python:3.10-slim
 
-# ✅ Set the working directory
+# Set work directory
 WORKDIR /app
 
-# ✅ Copy everything into the container
+# Copy requirements and install
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the full app
 COPY . .
 
-# ✅ Install Python dependencies
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
-
-# ✅ Expose the port that FastAPI will run on
+# Expose port
 EXPOSE 7860
 
-# ✅ Run the FastAPI app (Hugging Face will hit port 7860)
-CMD ["uvicorn", "api.zuno_bot1:app", "--host", "0.0.0.0", "--port", "7860"]
+# Run the FastAPI app using uvicorn
+CMD ["uvicorn", "zuno_bot1:app", "--host", "0.0.0.0", "--port", "7860"]
